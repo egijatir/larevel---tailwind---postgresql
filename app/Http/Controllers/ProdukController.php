@@ -15,8 +15,11 @@ class ProdukController extends Controller
      */
     public function index(Request $request)
     {
-        
-        $produk=produk::all();
+        $keyword=$request->keyword;
+        $produk=produk::where('nama','LIKE','%'.$keyword.'%')
+        ->orwhere('jumlah','LIKE','%'.$keyword.'%')
+        ->orwhere('harga','LIKE','%'.$keyword.'%')
+        ->get();
         return view('/produk',compact('produk'));
        
     }
@@ -61,9 +64,10 @@ class ProdukController extends Controller
      * @param  \App\Models\produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function edit(produk $produk)
+    public function edit($id)
     {
-        //
+        $produk=produk::find($id);
+        return view('edit',compact('produk'));
     }
 
     /**
@@ -73,9 +77,11 @@ class ProdukController extends Controller
      * @param  \App\Models\produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, produk $produk)
+    public function update($id,Request $request)
     {
-        //
+        $produk=produk::find($id);
+        $produk->update($request->except('_token','submit'));
+        return redirect('produk')->with('edit','Data');
     }
 
     /**

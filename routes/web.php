@@ -22,6 +22,8 @@ Route::middleware('auth')->group (function(){
     Route::get('/produk',[ProdukController::class,'index']);
     Route::post('/produk',[ProdukController::class,'store']);
     Route::delete('{id}/produk',[ProdukController::class,'destroy']);
+    Route::get('{id}/edit',[ProdukController::class,'edit']);
+    Route::put('{id}/edit',[ProdukController::class,'update']);
 });
 Route::get('/', function () {
     return view('auth.login');

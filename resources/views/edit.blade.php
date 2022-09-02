@@ -15,8 +15,8 @@
       class="h-full w-screen flex flex-row"
       x-data="{ sidenav: true }"
     >
+    
       <button
-        @click="sidenav = true"
         class="p-2 border-2 bg-white rounded-md border-gray-200 shadow-lg text-gray-500 focus:bg-teal-500 focus:outline-none focus:text-white absolute top-0 left-0 sm:hidden"
       >
         <svg
@@ -32,6 +32,7 @@
           ></path>
         </svg>
       </button>
+    </a>
       <div
         id="sidebar"
         class="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out"
@@ -165,58 +166,10 @@
          
   </div>
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-<div x-data="{ modelOpen: false }" class="mt-9">
-    <button @click="modelOpen =!modelOpen" class="flex items-center justify-center px-3 py-2 space-x-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform hover:bg-teal-500 rounded-md dark:bg-teal-500 dark:hover:bg-teal-600 dark:focus:bg-teal-600 hover:bg-teal-600 focus:outline-none focus:bg-teal-600 focus:ring focus:ring-teal-600 focus:ring-opacity-50">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd" />
-        </svg>
-
-        <span>Tambah Data</span>
-    </button>
-    @if(session()->has('tambah'))
-    <div>
-      
-          <div class="bg-white/60 backdrop-blur-xl z-20 max-w-md absolute right-5 top-5 rounded-lg p-6 shadow">
-              <h1 class="text-xl text-slate-700 font-medium">Data Berhasil Di Tambahkan👋</h1>
-              <div class="flex justify-between items-center">
-                  <a href="" class="text-slate-500 hover:text-slate-700 text-sm inline-flex space-x-1 items-center">
-                      <span>Go to Dashboard</span>
-                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                  </a>
-                  
-              </div>
-          </div>
-    @endif
-    @if(session()->has('edit'))
-    <div>
-      
-          <div class="bg-white/60 backdrop-blur-xl z-20 max-w-md absolute right-5 top-5 rounded-lg p-6 shadow">
-              <h1 class="text-xl text-slate-700 font-medium">Data Berhasil Di 👋</h1>
-              <div class="flex justify-between items-center">
-                  <a href="" class="text-slate-500 hover:text-slate-700 text-sm inline-flex space-x-1 items-center">
-                      <span>Go to Dashboard</span>
-                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                  </a>
-                  
-              </div>
-          </div>
-    @endif
-    @if(session()->has('dihapus'))
-    <div>
-          <div class="bg-white/60 backdrop-blur-xl z-20 max-w-md absolute right-5 top-5 rounded-lg p-6 shadow">
-              <h1 class="text-xl text-slate-700 font-medium">Data Berhasil Di Hapus👋</h1>
-              <div class="flex justify-between items-center">
-                  <a href="" class="text-slate-500 hover:text-slate-700 text-sm inline-flex space-x-1 items-center">
-                      <span>Go to Dashboard</span>
-                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                  </a>
-                  
-              </div>
-          </div>
-    @endif
+<div x-data="{ modelOpen: true }" class="mt-9">
     <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
-            <div x-cloak @click="modelOpen = false" x-show="modelOpen" 
+            <div x-cloak @click="modelClose = false" x-show="modelOpen" 
                 x-transition:enter="transition ease-out duration-300 transform"
                 x-transition:enter-start="opacity-0" 
                 x-transition:enter-end="opacity-100"
@@ -236,139 +189,46 @@
                 class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
             >
                 <div class="flex items-center justify-between space-x-4">
-                    <h1 class="text-xl font-medium text-gray-800 ">Tambah Data Produk</h1>
-
-                    <button @click="modelOpen = true" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                    <h1 class="text-xl font-medium text-gray-800 ">Edit  Data Produk</h1>
+                    <a href="/produk">
+                    <button  class="text-gray-600 focus:outline-none hover:text-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                     </button>
+                    </a>  
                   </div>
                   <!-- form input-->
-                <form action="/produk" method="POST">
-                  @csrf
+                  <form action="/{{ $produk->id }}/edit" method="POST">
+                    @method('put')
+                    @csrf
                     <div>
                         <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Nama</label>
-                        <input placeholder="Nama Barang" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <input value="{{ $produk->nama }}" type="text" name="nama" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                     </div>
 
                     <div class="mt-4">
                         <label for="email" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Jumlah</label>
-                        <input placeholder="Jumlah/Stok" type="text" name="jumlah" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                        <input value="{{ $produk->jumlah }}" type="text" name="jumlah" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                     </div> 
                     <div>
                       <label for="user name" class="block text-sm text-gray-700 capitalize dark:text-gray-200">Harga</label>
-                      <input placeholder="Harga Barang" type="text" name="harga" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
+                      <input value="{{ $produk->harga }}"" type="text" name="harga" class="block w-full px-3 py-2 mt-2 text-gray-600 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-indigo-400 focus:outline-none focus:ring focus:ring-indigo-300 focus:ring-opacity-40">
                   </div>
                     
                     <div class="flex justify-end mt-9">
-                        <button type="submit" name="submit"  class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-teal-600 rounded-md dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:bg-teal-700 hover:bg-teal-600 focus:outline-none focus:bg-teal-500 focus:ring focus:ring--300 focus:ring-opacity-50">
-                            Tambah Data
+                        <button type="submit" name="submit"  class="px-3 py-2 text-sm tracking-wide text-white capitalize transition-colors duration-200 transform bg-indigo-500 rounded-md dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:bg-indigo-700 hover:bg-indigo-600 focus:outline-none focus:bg-indigo-500 focus:ring focus:ring-indigo-300 focus:ring-opacity-50">
+                            Edit Data
                         </button>
                     </div>
                 </form>
+
+
             </div>
         </div>
     </div><!-- This is an example component -->
     
 </div>
-
-                    <div class="w-full max-w-90 mt-10 mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-                        <header class="px-0 py-1 border-b border-gray-100">
-                            <div class="font-bold text-gray-800 justify-center" ></div>
-                            <h1 class="font-bold text-center text-slate-500 mt-5 text-xl">Data Produk</h1>
-                            <form action="{{ 'produk' }}" class="relative ml-12 w-max" method="GET">
-                              <input type="text" name="keyword" 
-                                    class="peer cursor-pointer relative z-10 h-9 w-10 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-teal-600 focus:pl-16 focus:pr-4" />
-                              <svg xmlns="http://www.w3.org/2000/svg" class="absolute inset-y-0 my-auto h-8 w-12 border-r border-transparent stroke-gray-500 px-3.5 peer-focus:border-teal-300 peer-focus:stroke-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                              </svg>
-                            </form>
-                        </header>
-            
-                        <div class="overflow-x-auto p-3">
-                            <table class="table-auto w-full">
-                                <thead class="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                                    <tr>
-                                        <th></th>
-                                        <th class="p-2">
-                                            <div class="font-semibold text-left">Nomor</div>
-                                        </th>
-                                        <th class="p-2">
-                                            <div class="font-semibold text-left">Nama</div>
-                                        </th>
-                                        <th class="p-2">
-                                            <div class="font-semibold text-left">Jumlah</div>
-                                        </th>
-                                        <th class="p-2">
-                                          <div class="font-semibold text-left">Harga</div>
-                                      </th>
-                                        <th class="p-2" colspan="2">
-                                            <div class="font-semibold text-center">Action</div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <?php $no=0 ?>
-            @foreach ($produk as $p)      
-<?php $no++ ?>
-                                <tbody class="text-sm divide-y divide-gray-100">
-                                    <!-- record 1 -->
-                                    <tr>
-                                        <td class="p-2">
-                                            <input type="checkbox" class="w-5 h-5" value=""
-                                               />
-                                        </td>
-                                        <td class="p-2">
-                                            <div class="font-medium text-gray-800">
-                                             {{ $no }}
-                                            </div>
-                                        </td>
-                                        <td class="p-2">
-                                            <div class="text-left">{{ $p->nama }}</div>
-                                        </td>
-                                        <td class="p-2">
-                                            <div class="text-left font-medium">
-                                                {{ $p->jumlah }}
-                                            </div>
-                                        </td>
-                                        <td class="p-2">
-                                          <div class="text-left font-medium">
-                                              {{ $p->harga }}
-                                          </div>
-                                      </td>
-                                        <td class="p-2">
-                                            <div class="flex justify-center">
-                                              <form action="/{{ $p->id }}/produk" method="POST">
-                                                <button value="delete">
-                                                    <svg class="w-8 h-8 hover:text-teal-600 rounded-full hover:bg-gray-100 p-1"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                                        xmlns="http://www.w3.org/2000/svg">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                        </path>
-                                                    </svg>
-                                                </button>
-                                              </form>
-                                            </div>
-                                        </td><td class="p-2">
-                                          <a href="{{ $p->id }}/edit">
-                                          <div class="flex justify-center">
-                                              <button value="delete">
-                                                <svg class="h-5 w-5 text-black" <svg  width="24"  height="24"  viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
-                                              </button>
-                                          </div>
-                                        </a>
-                                      </td>
-                                    </tr>
-                                   
-                                </tbody>
-                                
-                                @endforeach
-                            </table>
-                            
-                          </div>
-                                          <div class="flex justify-end">
-                            <!-- send this data to backend (note: use class 'hidden' to hide this input) -->
                             <input type="hidden" class="border border-black bg-gray-50" x-model="selected" />
                         </div>
                     </div>

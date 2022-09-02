@@ -19,7 +19,7 @@ class ProdukController extends Controller
         $produk=produk::where('nama','LIKE','%'.$keyword.'%')
         ->orwhere('jumlah','LIKE','%'.$keyword.'%')
         ->orwhere('harga','LIKE','%'.$keyword.'%')
-        ->get();
+        ->paginate(5);
         return view('/produk',compact('produk'));
        
     }

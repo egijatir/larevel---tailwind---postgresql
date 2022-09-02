@@ -276,7 +276,7 @@
                     <div class="w-full max-w-90 mt-10 mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
                         <header class="px-0 py-1 border-b border-gray-100">
                             <div class="font-bold text-gray-800 justify-center" ></div>
-                            <h1 class="font-bold text-center text-slate-500 mt-5 text-xl">Data Produk</h1>
+                            <h1 class="font-bold text-center text-slate-500 mt-5 text-xl">DATA PRODUK</h1>
                             <form action="{{ 'produk' }}" class="relative ml-12 w-max" method="GET">
                               <input type="text" name="keyword" 
                                     class="peer cursor-pointer relative z-10 h-9 w-10 rounded-full border bg-transparent pl-12 outline-none focus:w-full focus:cursor-text focus:border-teal-600 focus:pl-16 focus:pr-4" />
@@ -365,7 +365,8 @@
                                 
                                 @endforeach
                             </table>
-                            
+                            <br>
+                            {{ $produk->links() }}
                           </div>
                                           <div class="flex justify-end">
                             <!-- send this data to backend (note: use class 'hidden' to hide this input) -->
